@@ -1,3 +1,5 @@
+const userAddress = require('./userAddress');
+
 const mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
@@ -12,6 +14,11 @@ const userSchema= new Schema({
     },
     password:{
         type:String,
+        required:true
+    },
+    address:{
+        type:Schema.Types.ObjectId,
+        ref:"userAddress",
         required:true
     }
 });
