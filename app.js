@@ -1,7 +1,7 @@
 const users = require('./models/users')
-
+require('dotenv').config()
 //dependencies and constants
-const uri= "mongodb+srv://amaan:9868439196@cluster0.rwg26nd.mongodb.net/work?retryWrites=true&w=majority",
+const uri= process.env.URI,
     mongoose = require('mongoose'),
     express= require('express'),
     {faker}=require('@faker-js/faker'),
@@ -9,7 +9,7 @@ const uri= "mongodb+srv://amaan:9868439196@cluster0.rwg26nd.mongodb.net/work?ret
     User=require('./models/users'),
     Userprofile=require('./models/usersprofiles'),
     err=(err)=>{console.log(err)}
-
+    
 
 
 
@@ -61,7 +61,7 @@ const seedprofile=async ()=>{
     })
     
 }
-// seedprofile()
+//seedprofile()
 
 //____________Question 1 End______________________
 
@@ -112,6 +112,7 @@ const deleteAt25=()=>{
 // console.log(date)
 
 //routes
+
 app.get('/',(req,res)=>{
     res.send('server is up!')
 })
