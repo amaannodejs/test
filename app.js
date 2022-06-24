@@ -61,11 +61,48 @@ const seedprofile=async ()=>{
     })
     
 }
-seedprofile()
+// seedprofile()
 
 //____________Question 1 End______________________
 
 
+//_______________Question 2__________________
+//Avarage age count
+const avarageAge=()=>{
+    const currentYear=Number(Date().split(' ')[3])
+    Userprofile.find().then(usersp=>{
+        if(!usersp){return console.log('no user found')}
+        let totalAge=0
+        usersp.forEach(user=>{
+            
+            let age = currentYear - Number(user.dob.toDateString().split(' ')[3])
+            totalAge = totalAge + age
+        })
+        let avgage=totalAge/usersp.length
+        console.log(avgage)
+    }).catch(err)
+}
+//avarageAge()
+
+//delete age more than 25
+
+const deleteAt25=()=>{
+    const currentYear=Number(Date().split(' ')[3])
+    Userprofile.find().then(usersp=>{
+        if(!usersp){return console.log('no user found')}
+        usersp.forEach(userp=>{
+            let age = currentYear - Number(userp.dob.toDateString().split(' ')[3])
+            if(age>25){
+                console.log(userp.user_id)
+                User.findOneAndDelete({"_id":userp.user_id}).then(del=>{
+                    userp.remove()
+                }).catch(err)
+                
+            }
+        })
+    }).catch(err)
+}
+//deleteAt25()
 
 
 // const date=faker.date.birthdate()
